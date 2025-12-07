@@ -1,44 +1,68 @@
 // Prevent multiple initializations
-if (window.pageNavigationInitialized) {
+if (window.pageListingsNoScrollInitialized) {
   console.log('Page navigation already initialized, skipping...');
 } else {
-  window.pageNavigationInitialized = true;
+  window.pageListingsNoScrollInitialized = true;
   initPageNavigation();
 }
 
 function initPageNavigation() {
 const scrollY = window.scrollY;
 
-function nextpage() {
-  const currentUrl = window.location.href;
-  const regExp = /http:\/\/eduardabajyan\.local\/page(\d+)/;
-  const match = currentUrl.match(regExp);
-  let currentPage = match ? parseInt(match[1]) : 0;
-  if (currentPage === 6) {
-    window.location.href = "http://eduardabajyan.local/";
-    console.log(currentPage);
-    return;
+// Single navigation gate to prevent double/rapid triggers
+let isNavigating = false;
+const NAVIGATION_COOLDOWN = 600; // ms - increased cooldown
+const MIN_PAGE = 1;
+const MAX_PAGE = 6;
+
+function getBaseUrl() {
+  const protocol = window.location.protocol;
+  const host = window.location.host;
+  return `${protocol}//${host}`;
+}
+
+function getCurrentPage() {
+  const path = window.location.pathname;
+  const match = path.match(/\/page(\d+)/);
+  return match ? parseInt(match[1]) : 1;
+}
+
+function navigateToPage(page) {
+  if (isNavigating) return;
+  
+  isNavigating = true;
+  const baseUrl = getBaseUrl();
+  
+  if (page < MIN_PAGE) {
+    page = MIN_PAGE;
+  } else if (page > MAX_PAGE) {
+    // Loop back to page1 when going past max
+    page = MIN_PAGE;
   }
-  window.location.href = `http://eduardabajyan.local/page${++currentPage}`;
+  
+  window.location.href = `${baseUrl}/page${page}`;
+  
+  // Reset gate after cooldown (in case navigation is cancelled)
+  setTimeout(() => {
+    isNavigating = false;
+  }, NAVIGATION_COOLDOWN);
+}
+
+function nextpage() {
+  const currentPage = getCurrentPage();
+  navigateToPage(currentPage + 1);
 }
 
 function previouspage() {
-  const currentUrl = window.location.href;
-  const regExp = /http:\/\/eduardabajyan\.local\/page(\d+)/;
-  const match = currentUrl.match(regExp);
-  const currentPage = match ? parseInt(match[1]) : 1;
-  const prevPage = Math.max(1, currentPage - 1);
-  window.location.href = `http://eduardabajyan.local/page${prevPage}`;
+  const currentPage = getCurrentPage();
+  navigateToPage(currentPage - 1);
 }
 
 // Touch swipe detection
 let touchStartX = 0;
 
-// Scroll detection with proper debouncing and cooldown
-let scrollTimeout;
-let isScrolling = false;
-const SCROLL_COOLDOWN = 100; // Cooldown period in ms
-const SCROLL_THRESHOLD = 50; // Minimum delta to trigger
+// Wheel event handling
+const WHEEL_THRESHOLD = 50; // Minimum delta to trigger
 
 // Touch swipe detection
 document.body.addEventListener(
@@ -52,15 +76,19 @@ document.body.addEventListener(
 document.body.addEventListener(
   "touchend",
   (e) => {
+    if (isNavigating) return;
+    
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX;
 
-    if (diff > 100) {
-      // Swipe down
-      previouspage();
-    } else if (diff < -100) {
-      // Swipe up
-      nextpage();
+    if (Math.abs(diff) > 100) {
+      if (diff > 0) {
+        // Swipe right
+        previouspage();
+      } else {
+        // Swipe left
+        nextpage();
+      }
     }
   },
   { passive: true }
@@ -68,28 +96,22 @@ document.body.addEventListener(
 
 // Keyboard arrow keys
 document.addEventListener("keydown", (e) => {
+  if (isNavigating) return;
+  
   if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
     previouspage();
   } else if (e.key === "ArrowDown" || e.key === "ArrowRight") {
     nextpage();
   }
 });
-// Mouse wheel / trackpad scrolling
-let lastScrollTime = 0;
 
+// Mouse wheel / trackpad scrolling
 window.addEventListener('wheel', (e) => {
-  const now = Date.now();
-  
-  // Check if enough time has passed since last scroll
-  if (now - lastScrollTime < SCROLL_COOLDOWN) {
-    return;
-  }
+  if (isNavigating) return;
   
   // Horizontal scroll detection
   if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-    if (Math.abs(e.deltaX) > SCROLL_THRESHOLD) {
-      lastScrollTime = now;
-      
+    if (Math.abs(e.deltaX) > WHEEL_THRESHOLD) {
       if (e.deltaX > 0) {
         // Scrolling right
         nextpage();
