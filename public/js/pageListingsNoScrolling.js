@@ -19,7 +19,7 @@ const MAX_PAGE = 6;
 const WHEEL_THRESHOLD = 50; // Minimum delta to trigger
 
 // Touch swipe constants
-const TOUCH_SWIPE_THRESHOLD = 100; // Minimum swipe distance to trigger
+const TOUCH_SWIPE_THRESHOLD = 100; // Minimum horizontal swipe distance to trigger
 
 function getBaseUrl() {
   const protocol = window.location.protocol;
@@ -67,7 +67,6 @@ function previouspage() {
 // Touch swipe detection
 let touchStartX = 0;
 
-// Touch swipe detection
 document.body.addEventListener(
   "touchstart",
   (e) => {
