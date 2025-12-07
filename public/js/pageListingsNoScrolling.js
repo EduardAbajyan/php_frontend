@@ -15,6 +15,12 @@ const NAVIGATION_COOLDOWN = 600; // ms - increased cooldown
 const MIN_PAGE = 1;
 const MAX_PAGE = 6;
 
+// Wheel event handling constants
+const WHEEL_THRESHOLD = 50; // Minimum delta to trigger
+
+// Touch swipe constants
+const TOUCH_SWIPE_THRESHOLD = 100; // Minimum swipe distance to trigger
+
 function getBaseUrl() {
   const protocol = window.location.protocol;
   const host = window.location.host;
@@ -61,9 +67,6 @@ function previouspage() {
 // Touch swipe detection
 let touchStartX = 0;
 
-// Wheel event handling
-const WHEEL_THRESHOLD = 50; // Minimum delta to trigger
-
 // Touch swipe detection
 document.body.addEventListener(
   "touchstart",
@@ -81,7 +84,7 @@ document.body.addEventListener(
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX;
 
-    if (Math.abs(diff) > 100) {
+    if (Math.abs(diff) > TOUCH_SWIPE_THRESHOLD) {
       if (diff > 0) {
         // Swipe right
         previouspage();

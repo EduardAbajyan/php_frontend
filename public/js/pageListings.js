@@ -16,6 +16,13 @@ function initPageNavigation() {
   const NAVIGATION_COOLDOWN = 600; // ms - increased cooldown
   const MIN_PAGE = 1;
   const MAX_PAGE = 6;
+  
+  // Wheel event handling constants
+  const WHEEL_DEBOUNCE = 150; // ms
+  const WHEEL_THRESHOLD = 50; // Minimum accumulated delta to trigger
+  
+  // Touch swipe constants
+  const TOUCH_SWIPE_THRESHOLD = 50; // Minimum swipe distance to trigger
 
   function getBaseUrl() {
     const protocol = window.location.protocol;
@@ -66,8 +73,6 @@ function initPageNavigation() {
   // Wheel event handling with debouncing
   let wheelDeltaAccumulator = 0;
   let wheelTimeout = null;
-  const WHEEL_DEBOUNCE = 150; // ms
-  const WHEEL_THRESHOLD = 50; // Minimum accumulated delta to trigger
 
   document.addEventListener(
     "wheel",
@@ -118,7 +123,7 @@ function initPageNavigation() {
       const touchEndY = e.changedTouches[0].clientY;
       const diff = touchEndY - touchStartY;
 
-      if (Math.abs(diff) > 50) {
+      if (Math.abs(diff) > TOUCH_SWIPE_THRESHOLD) {
         if (diff > 0) {
           // Swipe down
           previouspage();
