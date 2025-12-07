@@ -38,9 +38,9 @@
                     <li><a href="<?php echo base_url('page1'); ?>"> Home </a></li>
                     <li><a href="<?php echo base_url('page3'); ?>">About</a></li>
                     <li><a href="<?php echo base_url('page4'); ?>">Education</a></li>
-                    <li><a href="<?php echo base_url('page4'); ?>">Skills</a></li>
-                    <li><a href="<?php echo base_url('page4'); ?>">Portfolio app</a></li>
-                    <li><a href="<?php echo base_url('page4'); ?>">Contact</a></li>
+                    <li><a href="<?php echo base_url('page5'); ?>">Skills</a></li>
+                    <li><a href="https://youtube.com">Portfolio app</a></li>
+                    <li><a href="<?php echo base_url('page6'); ?>">Contact</a></li>
                 </ul>
             </div>
         </div>
