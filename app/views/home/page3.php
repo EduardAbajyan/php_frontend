@@ -30,7 +30,7 @@
         href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Cagliostro&family=Corinthia:wght@400;700&family=Niconne&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
-    <title>Page 3</title>
+    <title>About Me</title>
 </head>
 
 <body>

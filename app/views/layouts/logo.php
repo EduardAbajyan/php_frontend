@@ -36,7 +36,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Wendy+One&display=swap"
         rel="stylesheet" />
-    <title>Home Page</title>
+    <title>Logo page</title>
 </head>
 
 <body>
