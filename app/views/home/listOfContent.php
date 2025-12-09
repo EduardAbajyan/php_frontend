@@ -4,14 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-        function setViewportVars() {
-            document.documentElement.style.setProperty("--vw", window.innerWidth + "px");
-            document.documentElement.style.setProperty("--vh", window.innerHeight + "px");
-        }
-        setViewportVars();
-        window.addEventListener("resize", setViewportVars);
-    </script>
+    <script src="<?php echo base_url('js/ViewportVars.js') ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
     <link rel="icon" href="data:;" />
     <link

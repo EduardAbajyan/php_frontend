@@ -411,8 +411,7 @@ body {
   border: 1px solid #3f2215;
   border-radius: 10px;
   transition: border-color 0.3s ease;
-  opacity: 80%;
-
+  opacity: 90%;
 }
 
 .page4 .row #educationHeader img:hover {
@@ -496,6 +495,10 @@ body {
   }
   .page4 .row #educationList ul {
     height: var(--rem-height, 100vh);
+  }
+
+  .page4 .row #middle {
+    height: 0px;
   }
 }
 
@@ -611,7 +614,8 @@ body {
 }
 
 @media (max-width: 720px) {
-  html, body {
+  html,
+  body {
     overflow: auto;
   }
 }
@@ -623,7 +627,7 @@ body {
   max-width: 100%;
 }
 
-.page5>.row {
+.page5 > .row {
   justify-content: center;
   align-items: stretch;
   overflow-y: auto;
@@ -734,9 +738,9 @@ body {
 .page5 > .row > #skillsList > .skill-category {
   margin-bottom: 4vh;
 }
-.page5 > .row > #skillsList > .skill-category h4{
+.page5 > .row > #skillsList > .skill-category h4 {
   font-family: "Bonheur Royale", cursive;
-  font-weight: 400; 
+  font-weight: 400;
   font-size: 3rem;
   color: #3f2215;
   margin-bottom: 3%;
@@ -925,7 +929,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {

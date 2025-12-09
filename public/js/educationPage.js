@@ -2,6 +2,22 @@
 document.documentElement.style.overflow = 'auto';
 document.body.style.overflow = 'auto';
 
+function resizeEducationHeaderImg() {
+  let containerWidth = document.getElementById("educationHeader").offsetWidth;
+  let imageWidth = (containerWidth >>> 2) * 3;
+  imageHeight = imageWidth * 0.6667;
+
+  let img = document.querySelector("#educationHeader img");
+
+  if (!document.getElementsByTagName("img")?.is_array && img) {
+    img.style.width = imageWidth + "px";
+    img.style.height = imageHeight + "px";
+  }
+}
+resizeEducationHeaderImg();
+window.addEventListener("resize", resizeEducationHeaderImg);
+window.addEventListener("load", resizeEducationHeaderImg);
+
 // Calculate and set remaining height CSS variable
 function setRemainingHeight() {
   const educationHeader = document.getElementById("educationHeader");
@@ -15,6 +31,7 @@ function setRemainingHeight() {
 // Set initial height and update on resize
 setRemainingHeight();
 window.addEventListener('resize', setRemainingHeight);
+window.addEventListener('load', setRemainingHeight);
 
 let listItems = document.getElementsByTagName("li");
 const images = document.getElementById("imageContainer");
@@ -37,7 +54,6 @@ for (let i = 0; i < listItems.length; i++) {
         return;
       } else {
         async function addimages(images, info) {
-          console.log("info before split:", info);
           images.innerHTML = "";
           for (const img of info) {
             images.innerHTML +=
@@ -46,7 +62,6 @@ for (let i = 0; i < listItems.length; i++) {
               "/" +
               img.trim() +
               '.jpg" alt="Education Image" />';
-            console.log(images.innerHTML);
           }
         }
 
@@ -54,7 +69,6 @@ for (let i = 0; i < listItems.length; i++) {
         images.innerHTML = "";
         addimages(images, info).then(() => {
           let newImages = images.getElementsByTagName("img");
-          console.log("newImages:", newImages);
           Array.from(newImages).forEach((element) => {
             element.style.marginTop = "2vh";
             element.style.border = "1px solid #3f2215";
@@ -70,7 +84,6 @@ for (let i = 0; i < listItems.length; i++) {
             let imageHeight = imageWidth * 0.6667;
 
             let imgs = container.getElementsByTagName("img");
-            console.log(imgs);
             for (let img of imgs) {
               img.style.width = imageWidth + "px";
               img.style.height = imageHeight + "px";
@@ -78,6 +91,7 @@ for (let i = 0; i < listItems.length; i++) {
           }
           resizeEducationHeaderImg();
           window.addEventListener("resize", resizeEducationHeaderImg);
+          window.addEventListener("load", resizeEducationHeaderImg);
         });
       }
     }

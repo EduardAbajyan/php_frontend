@@ -5,20 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:;" />
-    <script>
-        function setViewportVars() {
-            document.documentElement.style.setProperty(
-                "--vw",
-                window.innerWidth + "px"
-            );
-            document.documentElement.style.setProperty(
-                "--vh",
-                window.innerHeight + "px"
-            );
-        }
-        setViewportVars();
-        window.addEventListener("resize", setViewportVars);
-    </script>
+    <script src="<?php echo base_url('js/ViewportVars.js') ?>"></script>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -60,27 +47,7 @@
             </div>
         </div>
     </div>
-    <script>
-        function resizeAboutMeImage() {
-            let containerWidth =
-                document.getElementById("imageAboutMe").offsetWidth;
-            let containerHeight =
-                document.getElementById("imageAboutMe").offsetHeight;
-            let imageWidth = (containerWidth >>> 3) * 7;
-            let imageHeight = (containerHeight >>> 3) * 7;
-
-            if (containerWidth * 4 > containerHeight * 3)
-                imageWidth = (imageHeight * 3) >>> 2;
-            else if (containerWidth * 4 < containerHeight * 3)
-                imageHeight = (imageWidth << 2) / 3;
-
-            let img = document.querySelector("#imageAboutMe .frame img");
-            img.style.width = imageWidth + "px";
-            img.style.height = imageHeight + "px";
-        }
-        resizeAboutMeImage();
-        window.addEventListener("resize", resizeAboutMeImage);
-    </script>
+    <script src="<?php echo base_url('js/resizeAboutMeImg.js') ?>"></script>
     <script src="<?php echo base_url('js/pageListings.js') ?>"></script>
 
 </body>

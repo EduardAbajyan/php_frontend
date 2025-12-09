@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,31 +30,13 @@
                 </div>
                 <button class="next-page-btn" onclick="window.location.href='<?php echo base_url('page5') ?>'">Next page →</button>
             </div>
-            <div class="contrasting col-12 col-md-2"></div>
+            <div class="contrasting col-12 col-md-2" id="middle"></div>
             <div class="col-12 col-md-5" id="educationList">
                 <?php echo $content; ?>
             </div>
         </div>
     </div>
-    <script>
-        function resizeEducationHeaderImg() {
-            let containerWidth =
-                document.getElementById("educationHeader").offsetWidth;
-            let imageWidth = (containerWidth >>> 2) * 3;
-            imageHeight = imageWidth * 0.6667;
-
-            let img = document.querySelector("#educationHeader img");
-
-            if (!document.getElementsByTagName("img")?.is_array && img) {
-                img.style.width = imageWidth + "px";
-                img.style.height = imageHeight + "px";
-            }
-        }
-        resizeEducationHeaderImg();
-        window.addEventListener("resize", resizeEducationHeaderImg);
-    </script>
     <script src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
-    <script src="<?php echo base_url('js/page4.js') ?>"></script>
+    <script src="<?php echo base_url('js/educationPage.js') ?>"></script>
 </body>
-
 </html>

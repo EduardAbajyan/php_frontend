@@ -11,7 +11,7 @@ class HomeController
     public function page1()
     {
         render(
-            'home/page1',
+            'home/logoContent',
             [],
             'logo'
         );
@@ -20,7 +20,7 @@ class HomeController
     public function page2()
     {
         render(
-            'home/page2',
+            'home/listOfContent',
             [],
             '0'
         );
@@ -29,7 +29,7 @@ class HomeController
     public function page3()
     {
         render(
-            'home/page3',
+            'home/aboutMe',
             [],
             '0'
         );
@@ -42,9 +42,9 @@ class HomeController
         $stmt->execute();
         $educationData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         render(
-            'home/page4',
+            'home/education',
             ['educationData' => $educationData],
-            'page4_layout'
+            'education_layout'
         );
     }
 
@@ -55,9 +55,9 @@ class HomeController
         $stmt->execute();
         $skillsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         render(
-            'home/page5',
+            'home/skills',
             ['skillsData' => $skillsData],
-            'page5_layout'
+            'skills_layout'
         );
     }
 
@@ -72,30 +72,6 @@ class HomeController
 
     public function submitContact()
     {
-        // TEMPORARY: Comment out CSRF validation for testing
-        /*
-        // Debug: Check session tokens
-        Core\Session::start();
-        $postToken = $_POST['csrf_token'] ?? null;
-        $sessionTokens = Core\Session::get('_csrf_tokens', []);
-
-        echo "DEBUG - POST token: " . ($postToken ?? 'not set') . "<br>";
-        echo "DEBUG - Session tokens: <pre>" . print_r($sessionTokens, true) . "</pre>";
-        echo "DEBUG - Token exists in session: " . (isset($sessionTokens[$postToken]) ? 'YES' : 'NO') . "<br>";
-        echo "DEBUG - All POST data: <pre>" . print_r($_POST, true) . "</pre>";
-
-        // Validate CSRF token
-        if (!isset($_POST['csrf_token']) || !Core\CSRF::validateToken($_POST['csrf_token'])) {
-            echo "CSRF validation failed!<br>";
-            Core\Session::flash('error', 'Invalid security token. Please try again.');
-            // redirect('page6', []);
-            exit;
-        }
-
-        echo "CSRF validation passed!<br>";
-        */
-
-        // Validate inputs
         $errors = [];
         $name = trim($_POST['name'] ?? '');
         $email = trim($_POST['email'] ?? '');
