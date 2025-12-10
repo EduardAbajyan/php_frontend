@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,7 +37,9 @@
             </div>
         </div>
     </div>
-    <script src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
-    <script src="<?php echo base_url('js/educationPage.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/educationPage.js') ?>"></script>
 </body>
+
 </html>

@@ -28,8 +28,9 @@
             <?php echo $content; ?>
         </div>
     </div>
-    <script src="<?php echo base_url('js/skillsPage.js') ?>"></script>
-    <script src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/skillsPage.js') ?>"></script>
 </body>
 
 </html>

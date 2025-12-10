@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="<?php echo base_url('js/logoHeader.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/logoHeader.js') ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
     <link rel="icon" href="data:;" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
         <div class="portfolioWord2">PORTFOLIO</div>
         <div class="projectWord">project</div>
     </div>
-    <script src="<?php echo base_url('js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
 </body>
 
 </html>
