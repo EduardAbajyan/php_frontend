@@ -1,9 +1,13 @@
 document.documentElement.style.overflowY = "auto";
 document.body.style.overflowY = "auto";
 
-// Contact Page JavaScript - Form validation and interactivity
+document.getElementById("email-card").addEventListener("click", function () {
+  const emailText = document.getElementById("email-text").textContent;
+  copyToClipboard(emailText);
+});
 
-document.addEventListener("DOMContentLoaded", function () {
+// Contact Page JavaScript - Form validation and interactivity
+document.addEventListener("load", function () {
   const form = document.getElementById("contactForm");
   const submitBtn = document.getElementById("submitBtn");
   const messageTextarea = document.getElementById("message");
@@ -184,6 +188,17 @@ function showCopyFeedback() {
   setTimeout(() => {
     copyBtn.textContent = "Copy";
     copyBtn.style.background = "var(--beige)";
+    copyBtn.style.color = "var(--brown-dark)";
+
+    copyBtn.addEventListener("mouseover", function () {
+      copyBtn.style.background = "var(--brown-dark)";
+      copyBtn.style.color = "var(--beige)";
+    });
+
+    copyBtn.addEventListener("mouseout", function () {
+      copyBtn.style.background = "var(--beige)";
+      copyBtn.style.color = "var(--brown-dark)";
+    });
   }, 2000);
 }
 

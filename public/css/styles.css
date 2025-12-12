@@ -144,6 +144,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--white);
 }
 
 .page2 #contentHeader h1 {

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -23,8 +24,8 @@
 
         <div class="contact-content">
             <!-- Contact Information Cards -->
-            <div class="contact-info-section ">
-                <div class="info-card contrasting">
+            <div class="contact-info-section">
+                <div class="info-card contrasting" id="email-card">
                     <div class="info-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -34,7 +35,7 @@
                     <div class="info-content">
                         <h3>Email</h3>
                         <p id="email-text">edwardabajyan@gmail.com</p>
-                        <button class="copy-btn" onclick="copyToClipboard('your.email@example.com')">
+                        <button class="copy-btn">
                             Copy
                         </button>
                     </div>

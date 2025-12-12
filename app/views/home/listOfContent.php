@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="<?php echo base_url('js/ViewportVars.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
     <link rel="icon" href="data:;" />
     <link
