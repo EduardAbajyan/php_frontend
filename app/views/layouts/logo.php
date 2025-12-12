@@ -23,7 +23,9 @@
         <div class="portfolioWord2">PORTFOLIO</div>
         <div class="projectWord">project</div>
     </div>
+    <?php echo $content ?>
     <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('js/logoDeleteHints.js') ?>"></script>
 </body>
 
 </html>

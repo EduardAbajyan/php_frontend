@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function handleCardClick() {
-    console.log("Card clicked!");
-  }
   function equalizeImageHeights() {
     const skillItems = document.querySelectorAll(
       ".page5 > .row > #skillsList > .skill-category .row ul li .card img"
@@ -22,4 +19,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   window.addEventListener("load", equalizeImageHeights);
   window.addEventListener("resize", equalizeImageHeights);
+});
+
+document.querySelectorAll(".skill-item").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    console.log(item.dataset.info);
+
+    const popupInfo = document.createElement("div");
+    const darkOverlay = document.createElement("div");
+    darkOverlay.classList.add("dark-overlay");
+
+    popupInfo.classList.add("skill-info-content");
+    popupInfo.innerHTML = `
+    <img src="${item.querySelector("img").src}" alt="Skill Image" />
+    <p>${item.dataset.info}</p>
+    `;
+
+    document.body.appendChild(darkOverlay);
+    document.body.appendChild(popupInfo);
+
+    darkOverlay.addEventListener("click", () => {
+      document.body.removeChild(popupInfo);
+      document.body.removeChild(darkOverlay);
+    });
+  });
 });
