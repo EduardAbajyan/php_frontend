@@ -8,7 +8,7 @@
   // Determine theme based on time
   // Night: 20:00 - 05:59
   // Day: 06:00 - 19:59
-  const isDayTime = hour >= 6 && hour < 19;
+  const isDayTime = hour >= 6 && hour < 20;
 
   // Define color schemes
   const colors = {
@@ -19,7 +19,7 @@
       "--brown-medium": "#8b5a3c",
     },
     night: {
-      "--white": "#000103",
+      "--white": "#343434ff",
       "--beige": "#3f2215",
       "--brown-dark": "#fff6e3",
       "--brown-medium": "#8b5a3c",

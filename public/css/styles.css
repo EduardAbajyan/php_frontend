@@ -352,7 +352,7 @@ body {
   font-weight: 700;
   font-style: normal;
   font-size: 4vw;
-  color: var(--brown-dark);
+  color: #3f2215;
 }
 
 .page3 #imageAboutMe .frame div .profession {
@@ -817,6 +817,10 @@ body {
 .skill-item .card {
   pointer-events: none;
 }
+
+.skill-item .card .card-body p {
+  color: var(--brown-dark)
+} 
 
 .dark-overlay {
   position: absolute;
