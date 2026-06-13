@@ -10,7 +10,7 @@ export let variables = {
   isNavigating: false,
   NAVIGATION_COOLDOWN: 600, // ms - increased cooldown
   MIN_PAGE: 1,
-  MAX_PAGE: 6,
+  MAX_PAGE: 7,
 
   // Wheel event handling constants
   WHEEL_DEBOUNCE: 150, // ms

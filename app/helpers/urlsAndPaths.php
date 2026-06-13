@@ -49,6 +49,7 @@ function url($routeName, $params = []): string
         'page4' => 'page4',
         'page5' => 'page5',
         'page6' => 'page6',
+        'page7' => 'page7',
     ];
     
     $path = $routes[$routeName] ?? $routeName;

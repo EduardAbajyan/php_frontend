@@ -8,4 +8,5 @@ Route::get('page3', 'HomeController@page3')->name('page3');
 Route::get('page4', 'HomeController@page4')->name('page4');
 Route::get('page5', 'HomeController@page5')->name('page5');
 Route::get('page6', 'HomeController@page6')->name('page6');
+Route::get('page7', 'HomeController@page7')->name('page7');
 Route::post('contact', 'HomeController@submitContact')->name('contact.submit');

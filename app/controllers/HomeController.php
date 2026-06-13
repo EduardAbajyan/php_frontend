@@ -70,6 +70,15 @@ class HomeController
         );
     }
 
+    public function page7()
+    {
+        render(
+            'home/contact',
+            [],
+            '0'
+        );
+    }
+
     public function submitContact()
     {
         $errors = [];
