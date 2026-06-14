@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:;" />
-    <script type="module" src="<?php echo base_url('js/ViewportVars.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/ViewportVars.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -17,7 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Cagliostro&family=Corinthia:wght@400;700&family=Niconne&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
     <title>About Me</title>
 </head>
 
@@ -39,7 +39,7 @@
             </div>
             <div class="col-12 col-md-8 col-lg-6" id="imageAboutMe">
                 <div class="frame">
-                    <img src="<?php echo base_url('images/aboutMeImage.jpg') ?>" alt="About Me Image" />
+                    <img src="<?php echo base_url('asset/images/aboutMeImage.jpg') ?>" alt="About Me Image" />
                     <div>
                         <p class="name">Eduard Abajyan</p>
                         <p class="profession">full-stack web developer</p>
@@ -48,8 +48,8 @@
             </div>
         </div>
     </div>
-    <script type="module" src="<?php echo base_url('js/resizeAboutMeImg.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/resizeAboutMeImg.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/pageListings.js') ?>"></script>
 
 </body>
 

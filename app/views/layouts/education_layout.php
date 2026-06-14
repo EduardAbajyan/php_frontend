@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
     <link rel="icon" href="data:;" />
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -16,7 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cagliostro&family=Wendy+One&family=Emilys+Candy&family=Nanum+Myeongjo&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
     <title>Education</title>
 </head>
 
@@ -25,22 +25,22 @@
         <div class="row">
             <div class="contrasting col-12 col-md-5" id="educationHeader">
                 <h1>Education</h1>
-                <div id="imageContainer" data-info="<?php echo base_url('images'); ?>">
+                <div id="imageContainer" data-info="<?php echo base_url('asset/images'); ?>">
                     <a href="https://www.ysu.am/en" target="_blank">
-                        <img src="<?php echo base_url('images/YSU.jpg') ?>" alt="YSU facade" />
+                        <img src="<?php echo base_url('asset/images/YSU.jpg') ?>" alt="YSU facade" />
                     </a>
                 </div>
                 <button class="next-page-btn" onclick="window.location.href='<?php echo base_url('page5') ?>'">Next page →</button>
             </div>
             <div class="contrasting col-12 col-md-2" id="middle"></div>
             <div class="col-12 col-md-5" id="educationList">
-                <?php echo $content; ?>
+                <?php echo $content ?? ''; ?>
             </div>
         </div>
     </div>
-    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/educationPage.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/pageListingsNoScrolling.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/educationPage.js') ?>"></script>
 </body>
 
 </html>

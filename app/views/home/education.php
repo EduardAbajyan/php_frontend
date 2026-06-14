@@ -4,16 +4,16 @@
                         style="--item-index: <?php echo $index ?>; --icon-url: url('<?php
                                                                         switch ($education['platform_type']) {
                                                                             case 'bacherol':
-                                                                                echo base_url('images/bacherol_degree.png');
+                                                                                echo base_url('asset/images/bacherol_degree.png');
                                                                                 break;
                                                                             case 'udemy':
-                                                                                echo base_url('images/udemy.png');
+                                                                                echo base_url('asset/images/udemy.png');
                                                                                 break;
                                                                             case 'book':
-                                                                                echo base_url('images/book.png');
+                                                                                echo base_url('asset/images/book.png');
                                                                                 break;
                                                                             case 'mosh':
-                                                                                echo base_url('images/mosh.png');
+                                                                                echo base_url('asset/images/mosh.png');
                                                                                 break;
                                                                             default:
                                                                                 echo 'default_icon.png';

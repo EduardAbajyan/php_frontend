@@ -64,7 +64,7 @@ class HomeController
     public function page6()
     {
         render(
-            'home/contact',
+            'home/caloriesAppPage',
             [],
             '0'
         );

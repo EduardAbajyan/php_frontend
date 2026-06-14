@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="<?php echo base_url('js/logoHeader.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
+    <script type="module" src="<?php echo base_url('asset/js/logoHeader.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
     <link rel="icon" href="data:;" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,9 +24,9 @@
         <div class="portfolioWord2">PORTFOLIO</div>
         <div class="projectWord">project</div>
     </div>
-    <?php echo $content ?>
-    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/logoDeleteHints.js') ?>"></script>
+    <?php echo $content ?? ''; ?>
+    <script type="module" src="<?php echo base_url('asset/js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/logoDeleteHints.js') ?>"></script>
 </body>
 
 </html>

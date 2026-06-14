@@ -30,10 +30,14 @@ function uploads_path($file = ''): string
 
 function asset($path = ''): string
 {
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-    $host = $_SERVER['HTTP_HOST'];
     $path = ltrim($path, '/');
-    return "{$protocol}://{$host}/{$path}";
+
+    // Keep compatibility: if caller already passes "asset/...", do not prefix again.
+    if (strpos($path, 'asset/') !== 0) {
+        $path = 'asset/' . $path;
+    }
+
+    return base_url($path);
 }
 
 function url($routeName, $params = []): string

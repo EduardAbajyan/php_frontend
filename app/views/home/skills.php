@@ -16,7 +16,7 @@
                                 <img src="<?php
                                             $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/images/skillsPage/' . $skillsData[$i]['image'] . '.png';
                                             echo file_exists($imagePath) ?
-                                                base_url('images/skillsPage/' . $skillsData[$i]['image'] . '.png') : 'https://picsum.photos/300/200?random=' . $skillsData[$i]["id"]; ?>"
+                                                base_url('asset/images/skillsPage/' . $skillsData[$i]['image'] . '.png') : 'https://picsum.photos/300/200?random=' . $skillsData[$i]["id"]; ?>"
                                     class="card-img-top"
                                     alt="<?php echo htmlspecialchars($skillsData[$i]['image']); ?>" />
                                 <div class="card-body">

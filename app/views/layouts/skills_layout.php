@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:;" />
-    <script type="module" src="<?php echo base_url('js/color-mode.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -16,7 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Cagliostro&family=Wendy+One&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url('css/styles.css') ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
     <title>Skills</title>
 </head>
 
@@ -26,12 +26,12 @@
             <div class="col-12 col-md-4 col-lg-3" id="skillsHeader">
                 <h2>Skills</h2>
             </div>
-            <?php echo $content; ?>
+            <?php echo $content ?? ''; ?>
         </div>
     </div>
-    <script type="module" src="<?php echo base_url('js/pageListings.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/pageListingsNoScrolling.js') ?>"></script>
-    <script type="module" src="<?php echo base_url('js/skillsPage.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/pageListings.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/pageListingsNoScrolling.js') ?>"></script>
+    <script type="module" src="<?php echo base_url('asset/js/skillsPage.js') ?>"></script>
 </body>
 
 </html>

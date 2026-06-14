@@ -74,7 +74,8 @@ class Route
 
     protected static function match($method, $requestUrl)
     {
-        foreach (self::$routes[$method] as $route => $controllerAction) {
+        $routesForMethod = self::$routes[$method] ?? [];
+        foreach ($routesForMethod as $route => $controllerAction) {
             if (empty($controllerAction)) continue;
             $patternFromRoute = preg_replace('#\{[a-zA-Z0-9_]+\}#', '{([a-zA-Z0-9_]+)}', $route);
             if (preg_match('#^' . $patternFromRoute . '$#', $requestUrl, $matchesWithRequestedUrl)) {
@@ -116,6 +117,58 @@ class Route
         call_user_func_array([$controllerInstance, $methodName], [$httpMethod, $data]);
     }
 
+    protected static function tryServePublicAsset($cleanedUrl, $method)
+    {
+        if (!in_array($method, ['GET', 'HEAD'])) {
+            return false;
+        }
+
+        $relativePath = ltrim($cleanedUrl, '/');
+        if ($relativePath === '' || strpos($relativePath, '..') !== false) {
+            return false;
+        }
+
+        if (strpos($relativePath, 'asset/') !== 0) {
+            return false;
+        }
+
+        $assetRelativePath = substr($relativePath, strlen('asset/'));
+        if ($assetRelativePath === '' || strpos($assetRelativePath, '..') !== false) {
+            return false;
+        }
+
+        $assetPath = APP_ROOT . '/public/' . $assetRelativePath;
+        if (!is_file($assetPath)) {
+            return false;
+        }
+
+        $ext = strtolower(pathinfo($assetPath, PATHINFO_EXTENSION));
+        $mimeByExt = [
+            'css' => 'text/css; charset=UTF-8',
+            'js' => 'application/javascript; charset=UTF-8',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif' => 'image/gif',
+            'svg' => 'image/svg+xml',
+            'ico' => 'image/x-icon',
+            'webp' => 'image/webp',
+            'woff' => 'font/woff',
+            'woff2' => 'font/woff2'
+        ];
+
+        if (!isset($mimeByExt[$ext])) {
+            return false;
+        }
+
+        header('Content-Type: ' . $mimeByExt[$ext]);
+        header('Content-Length: ' . filesize($assetPath));
+        if ($method !== 'HEAD') {
+            readfile($assetPath);
+        }
+        return true;
+    }
+
 
     public static function dispatch()
     {
@@ -144,15 +197,27 @@ class Route
             }
         }
         $cleanedUrl = trim(preg_replace('/\.php$/', '', urldecode($url)), '/');
-        list($action, $params) = [null, []];
-        $matchedRoute = self::match($method, $cleanedUrl);
-        if ($matchedRoute) {
+
+        if (self::tryServePublicAsset($cleanedUrl, $method)) {
+            exit;
+        }
+
+        $routeMethod = $method;
+        $matchedRoute = self::match($routeMethod, $cleanedUrl);
+
+        // HEAD is allowed to reuse GET route handlers.
+        if ($method === 'HEAD' && empty($matchedRoute['action'])) {
+            $routeMethod = 'GET';
+            $matchedRoute = self::match($routeMethod, $cleanedUrl);
+        }
+
+        if (!empty($matchedRoute['action']) && strpos($matchedRoute['action'], '@') !== false) {
 
             $action = $matchedRoute['action'];
-            $params = $matchedRoute['params'];
+            $params = $matchedRoute['params'] ?? [];
             $data = [...$data, ...$params];
             list($controllerName, $methodName) = explode('@', $action);
-            self::invokeControllerMethod($controllerName, $methodName, $method, $data);
+            self::invokeControllerMethod($controllerName, $methodName, $routeMethod, $data);
         } else {
             http_response_code(404);
             echo "404 Not Found";
