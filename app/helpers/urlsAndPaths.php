@@ -1,21 +1,36 @@
 <?php
 
+function request_scheme(): string
+{
+    if (
+        (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (isset($_SERVER['SERVER_PORT']) && (string)$_SERVER['SERVER_PORT'] === '443')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+    ) {
+        return 'https';
+    }
+
+    return 'http';
+}
+
 function base_url($path = ''): string
 {
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-    $host = $_SERVER['HTTP_HOST'];
+    $protocol = request_scheme();
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $path = trim($path, '/');
-    $base = "{$protocol}://{$host}/{$path}";
-    return $base;
+
+    return $path === ''
+        ? "{$protocol}://{$host}"
+        : "{$protocol}://{$host}/{$path}";
 }
 
 function uploads_url($file = ''): string
 {
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-    $host = $_SERVER['HTTP_HOST'];
+    $protocol = request_scheme();
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $file = ltrim($file, '/');
-    $base = "{$protocol}://{$host}/uploads" . ($file ? "/{$file}" : '');
-    return $base;
+
+    return "{$protocol}://{$host}/uploads" . ($file ? "/{$file}" : '');
 }
 
 function base_path($path = '', $dirToPathStart = ''): string
@@ -32,7 +47,6 @@ function asset($path = ''): string
 {
     $path = ltrim($path, '/');
 
-    // Keep compatibility: if caller already passes "asset/...", do not prefix again.
     if (strpos($path, 'asset/') !== 0) {
         $path = 'asset/' . $path;
     }
@@ -42,7 +56,6 @@ function asset($path = ''): string
 
 function url($routeName, $params = []): string
 {
-    // This is a simplified version - expand based on your routing needs
     $routes = [
         'home' => '',
         'contact' => 'contact',
@@ -55,7 +68,7 @@ function url($routeName, $params = []): string
         'page6' => 'page6',
         'page7' => 'page7',
     ];
-    
+
     $path = $routes[$routeName] ?? $routeName;
     return base_url($path);
 }
