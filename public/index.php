@@ -1,6 +1,6 @@
 <?php
 
-use Core\CSRF;
+use core\CSRF;
 
 ini_set('log_errors', '1');
 ini_set('error_log', '../log/php-error.log');
