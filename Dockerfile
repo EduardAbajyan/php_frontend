@@ -14,6 +14,15 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/apache2.conf \
     /etc/apache2/conf-available/*.conf
 
+# Allow .htaccess in public/
+RUN printf '%s\n' \
+    '<Directory /var/www/html/public>' \
+    '    AllowOverride All' \
+    '    Require all granted' \
+    '</Directory>' \
+    > /etc/apache2/conf-available/mvc-rewrite.conf \
+    && a2enconf mvc-rewrite
+
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
