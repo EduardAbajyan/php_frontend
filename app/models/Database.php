@@ -1,6 +1,6 @@
 <?php
 
-use Core\Session;
+use core\Session;
 
 class Database {
     private static $instance = null; 
