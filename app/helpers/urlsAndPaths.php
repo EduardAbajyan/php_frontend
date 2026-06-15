@@ -1,5 +1,11 @@
 <?php
 
+function request_scheme(): string
+{
+
+    return 'http';
+}
+
 function base_url($path = ''): string
 {
     $host = $_SERVER['HTTP_HOST'] ?? 'eduardabajyan.com';
@@ -30,7 +36,6 @@ function asset($path = ''): string
 {
     $path = ltrim($path, '/');
 
-    // Keep compatibility: if caller already passes "asset/...", do not prefix again.
     if (strpos($path, 'asset/') !== 0) {
         $path = 'asset/' . $path;
     }
@@ -40,7 +45,6 @@ function asset($path = ''): string
 
 function url($routeName, $params = []): string
 {
-    // This is a simplified version - expand based on your routing needs
     $routes = [
         'home' => '',
         'contact' => 'contact',
@@ -53,7 +57,7 @@ function url($routeName, $params = []): string
         'page6' => 'page6',
         'page7' => 'page7',
     ];
-    
+
     $path = $routes[$routeName] ?? $routeName;
     return base_url($path);
 }
