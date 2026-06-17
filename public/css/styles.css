@@ -329,6 +329,15 @@ body {
   border: 1px solid var(--brown-dark);
 }
 
+.page3 #imageAboutMe .frame img.aboutme-needs-size {
+  opacity: 0;
+}
+
+.page3 #imageAboutMe .frame img.aboutme-sized {
+  opacity: 1;
+  transition: opacity 0.12s ease-in;
+}
+
 .page3 #imageAboutMe .frame div {
   position: absolute;
   bottom: 3%;

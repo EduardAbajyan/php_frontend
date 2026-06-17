@@ -39,7 +39,7 @@
             </div>
             <div class="col-12 col-md-8 col-lg-6" id="imageAboutMe">
                 <div class="frame">
-                    <img src="<?php echo base_url('asset/images/aboutMeImage.jpg') ?>" alt="About Me Image" />
+                    <img class="aboutme-needs-size" src="<?php echo base_url('asset/images/aboutMeImage.jpg') ?>" alt="About Me Image" />
                     <div>
                         <p class="name">Eduard Abajyan</p>
                         <p class="profession">full-stack web developer</p>
