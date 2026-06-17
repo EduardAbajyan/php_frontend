@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
     const { width: imageWidth, height: imageHeight } =
       getEducationImageDimensions();
 
-    console.log("Container width:", containerWidth);
+    console.log("Container width:", educationHeader.offsetWidth);
     console.log("Calculated image width:", imageWidth);
     console.log("Calculated image height:", imageHeight);
 
