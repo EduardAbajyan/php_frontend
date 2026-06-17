@@ -1,12 +1,23 @@
 window.addEventListener("load", function () {
+  function getEducationImageDimensions() {
+    const educationHeader = document.getElementById("educationHeader");
+    if (!educationHeader) {
+      return { width: 0, height: 0 };
+    }
+
+    const containerWidth = educationHeader.offsetWidth;
+    const width = (containerWidth >>> 2) * 3;
+    const height = width * 0.6667;
+
+    return { width, height };
+  }
+
   function resizeEducationHeaderImg() {
-    // Use the smaller of: container width or viewport width (for mobile)
     const educationHeader = document.getElementById("educationHeader");
     if (!educationHeader) return;
 
-    let containerWidth = educationHeader.offsetWidth;
-    let imageWidth = (containerWidth >>> 2) * 3;
-    let imageHeight = imageWidth * 0.6667;
+    const { width: imageWidth, height: imageHeight } =
+      getEducationImageDimensions();
 
     console.log("Container width:", containerWidth);
     console.log("Calculated image width:", imageWidth);
@@ -21,7 +32,7 @@ window.addEventListener("load", function () {
   }
 
   resizeEducationHeaderImg();
-  window.addEventListener("resize", resizeEducationHeaderImg);  // Calculate and set remaining height CSS variable
+  window.addEventListener("resize", resizeEducationHeaderImg); // Calculate and set remaining height CSS variable
   function setRemainingHeight() {
     const educationHeader = document.getElementById("educationHeader");
     if (educationHeader) {
@@ -29,7 +40,7 @@ window.addEventListener("load", function () {
       const remainingHeight = window.innerHeight - headerHeight;
       document.documentElement.style.setProperty(
         "--rem-height",
-        remainingHeight + "px"
+        remainingHeight + "px",
       );
       console.log("Header height:", headerHeight);
       console.log("Remaining height set to:", remainingHeight + "px");
@@ -46,70 +57,68 @@ window.addEventListener("load", function () {
   console.log("Image container URL:", imagesUrl);
   console.log("Found list items:", listItems.length);
 
+  function preloadSizedImage(src, alt) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const { width, height } = getEducationImageDimensions();
+
+      img.onload = () => {
+        if (width && height) {
+          img.style.width = width + "px";
+          img.style.height = height + "px";
+        }
+        img.alt = alt;
+        resolve(img);
+      };
+
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  async function renderEducationImages(imageNames) {
+    const loadedImages = await Promise.all(
+      imageNames.map((name) => {
+        const src = imagesUrl + "/" + name.trim() + ".jpg";
+        return preloadSizedImage(src, "Education Image");
+      }),
+    );
+
+    images.innerHTML = "";
+    loadedImages.forEach((img, index) => {
+      if (loadedImages.length > 1) {
+        img.style.marginTop = "2vh";
+        img.style.border = "1px solid #3f2215";
+        img.style.borderRadius = "10px";
+        img.style.transition = "all 0.4s ease";
+        img.style.boxShadow = "0 4px 12px rgba(63, 34, 21, 0.15)";
+        img.style.animation = "fadeInScale 0.8s ease-out";
+      }
+      if (loadedImages.length > 1 && index === 0) {
+        img.style.marginTop = "0";
+      }
+      images.appendChild(img);
+    });
+  }
+
   for (let i = 0; i < listItems.length; i++) {
     listItems[i].addEventListener("click", function () {
       console.log("List item clicked!");
       let info = this.getAttribute("data-info");
       console.log("Data-info value:", info);
-      if (info) {
-        if (info.indexOf(",") === -1) {
-          images.innerHTML =
-            '<img src="' +
-            imagesUrl +
-            "/" +
-            info.trim() +
-            '.jpg" alt="Education Image" />';
-
-          // Use setTimeout to ensure DOM is updated before resizing
-          setTimeout(() => {
-            resizeEducationHeaderImg();
-          }, 0);
-          console.log(images.innerHTML);
-
-          return;
-        } else {
-          async function addimages(images, info) {
-            images.innerHTML = "";
-            for (const img of info) {
-              images.innerHTML +=
-                '<img src="' +
-                imagesUrl +
-                "/" +
-                img.trim() +
-                '.jpg" alt="Education Image" />';
-            }
-          }
-
-          info = info.split(",");
-          images.innerHTML = "";
-          addimages(images, info).then(() => {
-            let newImages = images.getElementsByTagName("img");
-            Array.from(newImages).forEach((element) => {
-              element.style.marginTop = "2vh";
-              element.style.border = "1px solid #3f2215";
-              element.style.borderRadius = "10px";
-              element.style.transition = "all 0.4s ease";
-              element.style.boxShadow = "0 4px 12px rgba(63, 34, 21, 0.15)";
-              element.style.animation = "fadeInScale 0.8s ease-out";
-            });
-            function resizeEducationHeaderImg() {
-              let container = document.getElementById("educationHeader");
-              let containerWidth = container.offsetWidth;
-              let imageWidth = (containerWidth >>> 2) * 3;
-              let imageHeight = imageWidth * 0.6667;
-
-              let imgs = container.getElementsByTagName("img");
-              for (let img of imgs) {
-                img.style.width = imageWidth + "px";
-                img.style.height = imageHeight + "px";
-              }
-            }
-            resizeEducationHeaderImg();
-            window.addEventListener("resize", resizeEducationHeaderImg);
-            window.addEventListener("load", resizeEducationHeaderImg);
-          });
-        }
+      if (!info) {
+        return;
       }
+
+      const imageNames = info.indexOf(",") === -1 ? [info] : info.split(",");
+
+      renderEducationImages(imageNames)
+        .then(() => {
+          resizeEducationHeaderImg();
+        })
+        .catch((error) => {
+          console.error("Failed to load education image(s):", error);
+        });
     });
   }
 });
