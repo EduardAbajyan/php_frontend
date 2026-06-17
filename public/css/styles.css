@@ -442,6 +442,11 @@ body {
 }
 
 .page4 .row #educationHeader img {
+  width: 75%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  display: block;
   margin-top: 2vh;
   border: 1px solid var(--brown-dark);
   border-radius: 10px;

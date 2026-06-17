@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+window.addEventListener("DOMContentLoaded", function () {
   function getEducationImageDimensions() {
     const educationHeader = document.getElementById("educationHeader");
     if (!educationHeader) {
@@ -62,12 +62,13 @@ window.addEventListener("load", function () {
       const img = new Image();
       const { width, height } = getEducationImageDimensions();
 
+      if (width && height) {
+        img.style.width = width + "px";
+        img.style.height = height + "px";
+      }
+      img.alt = alt;
+
       img.onload = () => {
-        if (width && height) {
-          img.style.width = width + "px";
-          img.style.height = height + "px";
-        }
-        img.alt = alt;
         resolve(img);
       };
 
