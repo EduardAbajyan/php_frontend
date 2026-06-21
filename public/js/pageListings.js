@@ -1,5 +1,3 @@
-import "./pageListingButtons.js";
-
 // Prevent multiple initializations
 if (window.pageListingsInitialized) {
   console.log("Page navigation already initialized, skipping...");

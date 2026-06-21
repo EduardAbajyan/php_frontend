@@ -33,8 +33,8 @@
                     <li><a href="<?php echo base_url('page3'); ?>">About</a></li>
                     <li><a href="<?php echo base_url('page4'); ?>">Education</a></li>
                     <li><a href="<?php echo base_url('page5'); ?>">Skills</a></li>
-                    <li><a href="#" onclick="alert('Portfolio page coming soon!'); return false;">Portfolio app</a></li>
-                    <li><a href="<?php echo base_url('page6'); ?>">Contact</a></li>
+                    <li><a href="<?php echo base_url('page6'); ?>">Portfolio app</a></li>
+                    <li><a href="<?php echo base_url('page7'); ?>">Contact</a></li>
                 </ul>
             </div>
         </div>
