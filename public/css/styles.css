@@ -36,13 +36,15 @@ body {
   font-size: clamp(0.82rem, 1vw, 1rem);
   letter-spacing: 0.03em;
   box-shadow: 0 10px 22px rgba(63, 34, 21, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.55);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  opacity: 0.2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   user-select: none;
   backdrop-filter: blur(6px);
 }
 
 .page-listing-nav-button:hover,
 .page-listing-nav-button:focus-visible {
+  opacity: 1;
   background: var(--beige);
   color: var(--brown-dark);
   transform: translateY(-1px);
