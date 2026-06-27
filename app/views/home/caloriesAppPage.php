@@ -394,12 +394,6 @@
                 </div>
             </div>
 
-            <div class="demo-credentials">
-                <h4>Demo Credentials</h4>
-                <p><strong>Email:</strong> demo@example.com</p>
-                <p><strong>Password:</strong> demo123</p>
-            </div>
-
             <a href="https://calories-app.eduardabajyan.com" target="_blank" class="cta-button">
                 View Live Demo →
             </a>
