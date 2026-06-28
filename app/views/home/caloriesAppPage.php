@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
+    <script defer src="<?php echo base_url('asset/js/lazy-images.js') ?>"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico') ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

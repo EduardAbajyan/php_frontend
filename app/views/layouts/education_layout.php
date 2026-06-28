@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
+    <script defer src="<?php echo base_url('asset/js/lazy-images.js') ?>"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico') ?>" />
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -24,21 +25,6 @@
         'path' => 'page4',
         'image' => asset('images/YSU.jpg'),
     ]); ?>
-    <script>
-        (function() {
-            var ua = navigator.userAgent;
-            var isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-            if (!isSafari) {
-                return;
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
-                    img.loading = 'eager';
-                });
-            });
-        })();
-    </script>
 </head>
 
 <body>
@@ -48,7 +34,12 @@
                 <h1>Education</h1>
                 <div id="imageContainer" data-info="<?php echo base_url('asset/images'); ?>">
                     <a href="https://www.ysu.am/en" target="_blank">
-                        <img src="<?php echo base_url('asset/images/YSU.jpg') ?>" alt="YSU facade" loading="lazy" decoding="async" />
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                            data-src="<?php echo base_url('asset/images/YSU.jpg') ?>"
+                            alt="YSU facade"
+                            loading="lazy"
+                            decoding="async" />
                     </a>
                 </div>
             </div>
