@@ -18,7 +18,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Wendy+One&display=swap"
         rel="stylesheet" />
-    <title>List of content</title>
+    <?php render_page_metadata([
+        'title' => 'Portfolio Contents | Eduard Abajyan',
+        'description' => 'Browse Eduard Abajyan\'s CV sections, including about, education, skills, project work, and contact information.',
+        'path' => 'page2',
+    ]); ?>
 </head>
 
 <body>

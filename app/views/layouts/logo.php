@@ -13,7 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Wendy+One&display=swap"
         rel="stylesheet" />
-    <title>Logo page</title>
+    <?php render_page_metadata([
+        'title' => 'Eduard Abajyan | Full-Stack Web Developer Portfolio',
+        'description' => 'Interactive portfolio and CV of Eduard Abajyan, a full-stack web developer building practical PHP and JavaScript web applications.',
+        'path' => 'page1',
+    ]); ?>
 </head>
 
 <body>

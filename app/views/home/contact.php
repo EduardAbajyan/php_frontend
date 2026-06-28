@@ -11,7 +11,11 @@
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Cagliostro&family=Wendy+One&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
-    <title>Contact</title>
+    <?php render_page_metadata([
+        'title' => 'Contact Eduard Abajyan',
+        'description' => 'Get in touch with Eduard Abajyan for freelance, collaboration, or full-stack web development opportunities.',
+        'path' => 'page7',
+    ]); ?>
 </head>
 
 <body>

@@ -17,7 +17,12 @@
         href="https://fonts.googleapis.com/css2?family=Cagliostro&family=Wendy+One&family=Emilys+Candy&family=Nanum+Myeongjo&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
-    <title>Education</title>
+    <?php render_page_metadata([
+        'title' => 'Education | Eduard Abajyan',
+        'description' => 'Education, certifications, and continuous learning highlights from Eduard Abajyan\'s full-stack developer CV.',
+        'path' => 'page4',
+        'image' => asset('images/YSU.jpg'),
+    ]); ?>
 </head>
 
 <body>

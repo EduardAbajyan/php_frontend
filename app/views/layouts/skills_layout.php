@@ -17,7 +17,11 @@
         href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Cagliostro&family=Wendy+One&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url('asset/css/styles.css') ?>" />
-    <title>Skills</title>
+    <?php render_page_metadata([
+        'title' => 'Skills | Eduard Abajyan',
+        'description' => 'Technical skills across PHP, JavaScript, TypeScript, SQL, Docker, and modern full-stack web development.',
+        'path' => 'page5',
+    ]); ?>
 </head>
 
 <body>
