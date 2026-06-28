@@ -1,5 +1,82 @@
 <?php
 
+function portfolio_navigation_items(): array
+{
+    return [
+        ['name' => 'Home', 'path' => 'page1'],
+        ['name' => 'CV Overview', 'path' => 'page2'],
+        ['name' => 'About', 'path' => 'page3'],
+        ['name' => 'Education', 'path' => 'page4'],
+        ['name' => 'Skills', 'path' => 'page5'],
+        ['name' => 'Portfolio Project', 'path' => 'page6'],
+        ['name' => 'Contact', 'path' => 'page7'],
+    ];
+}
+
+function render_structured_data(array $meta = []): void
+{
+    $navigationItems = portfolio_navigation_items();
+    $homeUrl = base_url('page1');
+    $path = (string) ($meta['path'] ?? 'page1');
+    $canonical = base_url($path);
+    $schemaType = $meta['schema_type'] ?? ($path === 'page1' ? 'ProfilePage' : ($path === 'page2' ? 'CollectionPage' : 'WebPage'));
+
+    $graph = [
+        [
+            '@type' => 'WebSite',
+            '@id' => $homeUrl . '#website',
+            'url' => $homeUrl,
+            'name' => $meta['site_name'],
+            'description' => $meta['description'],
+            'inLanguage' => 'en',
+        ],
+        [
+            '@type' => 'Person',
+            '@id' => $homeUrl . '#person',
+            'name' => $meta['author'],
+            'url' => $homeUrl,
+            'image' => $meta['image'],
+            'jobTitle' => 'Full-Stack Web Developer',
+            'description' => $meta['description'],
+            'sameAs' => [
+                'https://www.linkedin.com/in/eduardabajyan/',
+                'https://github.com/EduardAbajyan',
+                'https://www.instagram.com/eduardabajyan/',
+            ],
+        ],
+        [
+            '@type' => $schemaType,
+            '@id' => $canonical . '#webpage',
+            'url' => $canonical,
+            'name' => $meta['title'],
+            'description' => $meta['description'],
+            'isPartOf' => ['@id' => $homeUrl . '#website'],
+            'about' => ['@id' => $homeUrl . '#person'],
+            'primaryImageOfPage' => [
+                '@type' => 'ImageObject',
+                'url' => $meta['image'],
+            ],
+        ],
+    ];
+
+    foreach ($navigationItems as $index => $item) {
+        $graph[] = [
+            '@type' => 'SiteNavigationElement',
+            '@id' => base_url($item['path']) . '#nav',
+            'name' => $item['name'],
+            'url' => base_url($item['path']),
+            'position' => $index + 1,
+        ];
+    }
+
+    $payload = [
+        '@context' => 'https://schema.org',
+        '@graph' => $graph,
+    ];
+
+    echo '<script type="application/ld+json">' . json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . PHP_EOL;
+}
+
 function render_page_metadata(array $meta = []): void
 {
     $defaults = [
@@ -40,4 +117,6 @@ function render_page_metadata(array $meta = []): void
     echo '<meta name="twitter:title" content="' . $title . '">' . PHP_EOL;
     echo '<meta name="twitter:description" content="' . $description . '">' . PHP_EOL;
     echo '<meta name="twitter:image" content="' . $image . '">' . PHP_EOL;
+
+    render_structured_data($meta);
 }

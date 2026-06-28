@@ -149,3 +149,12 @@
         </div>
     </div>
 </div>
+
+<nav class="portfolio-search-nav" aria-label="CV sections">
+    <span class="portfolio-search-nav__label">CV sections</span>
+    <a href="<?php echo base_url('page3'); ?>">About</a>
+    <a href="<?php echo base_url('page4'); ?>">Education</a>
+    <a href="<?php echo base_url('page5'); ?>">Skills</a>
+    <a href="<?php echo base_url('page6'); ?>">Portfolio Project</a>
+    <a href="<?php echo base_url('page7'); ?>">Contact</a>
+</nav>
