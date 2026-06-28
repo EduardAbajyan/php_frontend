@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="<?php echo asset('images/portfolio.ico') ?>" />
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('favicon.ico') ?>" />
     <script type="module" src="<?php echo base_url('asset/js/ViewportVars.js') ?>"></script>
     <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
     <link
