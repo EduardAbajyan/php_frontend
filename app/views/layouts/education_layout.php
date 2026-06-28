@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="<?php echo base_url('asset/js/color-mode.js') ?>"></script>
-    <link rel="icon" href="data:;" />
+    <link rel="icon" type="image/x-icon" href="<?php echo asset('images/portfolio.ico') ?>" />
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
