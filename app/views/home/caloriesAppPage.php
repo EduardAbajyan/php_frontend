@@ -400,7 +400,7 @@
             </div>
 
             <a href="https://calories-app.eduardabajyan.com" target="_blank" class="cta-button">
-                View Live Demo →
+                Calories couter app →
             </a>
         </div>
     </div>
